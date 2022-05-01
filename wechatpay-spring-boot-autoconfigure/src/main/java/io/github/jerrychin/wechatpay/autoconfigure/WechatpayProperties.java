@@ -2,12 +2,12 @@ package io.github.jerrychin.wechatpay.autoconfigure;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.annotation.PostConstruct;
 
 @Setter
 @Getter
-@ToString
 @ConfigurationProperties("wechatpay")
 public class WechatpayProperties {
 
@@ -42,4 +42,18 @@ public class WechatpayProperties {
 	 * API v3密钥是加密时使用的对称密钥。商户可以在【商户平台】->【API安全】的页面设置该密钥。
 	 */
 	private String apiV3Key;
+
+	@PostConstruct
+	public void postConstruct() {
+		hasLength(merchantId, "wechatpay.merchantId is required.");
+		hasLength(merchantSerialNumber, "wechatpay.merchantSerialNumber is required.");
+		hasLength(merchantPrivateKey, "wechatpay.merchantPrivateKey is required.");
+		hasLength(apiV3Key, "wechatpay.apiV3Key is required.");
+	}
+
+	private static void hasLength(String text, String message) {
+		if (text == null || text.trim().length() == 0) {
+			throw new IllegalArgumentException(message);
+		}
+	}
 }
