@@ -15,8 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -94,6 +97,20 @@ public class WechatPayAutoConfiguration {
 
 		return new NotificationHandler(certificatesManager.getVerifier(properties.getMerchantId()),
 				properties.getApiV3Key().getBytes(StandardCharsets.UTF_8));
+	}
+
+	@Configuration
+	@ConditionalOnClass(RestTemplate.class)
+	static class RestTemplateAutoConfiguration {
+
+		@Bean
+		@ConditionalOnMissingBean
+		public RestTemplate restTemplate(CloseableHttpClient httpClient, RestTemplateBuilder builder) {
+			log.trace("restTemplate() entered.");
+
+			return builder.requestFactory(() -> new HttpComponentsClientHttpRequestFactory(httpClient)).build();
+		}
+
 	}
 
 }
