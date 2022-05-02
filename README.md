@@ -67,18 +67,18 @@
 1. 配置 `application.properties` :
 
     ```properties
-    # 你的商户号，必选，下面是个示例：
+    # 你的商户号，不存在则不会进行自动化配置，下面是个示例：
     wechatpay.merchantId=1230000109
-   
-    # 商户API证书的证书序列号，可选，下面是个示例：
-    wechatpay.merchantSerialNumber=1DDE55AD98ED71D6EDD4A4A16996DE7B47773A8C
-   
-    # 商户API私钥，可选，下面是个示例：
-    wechatpay.merchantPrivateKey=-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----
     
-    # API v3密钥，必选，下面是个示例：
+    # API v3密钥，不存在则不会进行自动化配置，下面是个示例：
     wechatpay.apiV3Key=12341234123412341234123412341234
    
+    # 商户API证书的证书序列号，若不存在则用户必须自行提供 WechatPay2Credentials，下面是个示例：
+    wechatpay.merchantSerialNumber=1DDE55AD98ED71D6EDD4A4A16996DE7B47773A8C
+   
+    # 商户API私钥，若不存在则用户必须自行提供 WechatPay2Credentials，下面是个示例：
+    wechatpay.merchantPrivateKey=-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----
+    
     # 日志等级，可选
     logging.level.io.github.jerrychin.wechatpay=trace
     ```

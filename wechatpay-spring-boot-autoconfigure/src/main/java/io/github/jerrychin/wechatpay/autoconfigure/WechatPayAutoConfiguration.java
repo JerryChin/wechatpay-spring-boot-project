@@ -14,6 +14,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,7 @@ import java.security.PrivateKey;
 @Configuration
 @ConditionalOnClass(WechatPayHttpClientBuilder.class)
 @EnableConfigurationProperties(WechatpayProperties.class)
+@ConditionalOnProperty(prefix = "wechatpay", name = {"merchant-id", "api-v3-key"})
 public class WechatPayAutoConfiguration {
 
 	@Autowired(required = false)
@@ -38,6 +40,7 @@ public class WechatPayAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
+	@ConditionalOnProperty(prefix = "wechatpay", name = {"merchant-serial-number", "merchant-private-key"})
 	public WechatPay2Credentials wechatPay2Credentials(WechatpayProperties properties) {
 		log.trace("wechatPay2Credentials(...) entered.");
 
