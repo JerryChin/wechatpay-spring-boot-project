@@ -58,7 +58,7 @@ public class WechatPayAutoConfiguration {
 
 		// 向证书管理器增加需要自动更新平台证书的商户信息
 		certificatesManager.putMerchant(properties.getMerchantId(), credentials,
-				properties.getMerchantPrivateKey().getBytes(StandardCharsets.UTF_8));
+				properties.getApiV3Key().getBytes(StandardCharsets.UTF_8));
 
 		return certificatesManager;
 	}
