@@ -7,6 +7,19 @@
 	<packaging>pom</packaging>
 	<name>Wechatpay Spring Boot Project</name>
 
+	<description>
+		Unofficial implementation of WeChat Pay SpringBoot Integration, Yummy!
+	</description>
+
+	<url>https://github.com/JerryChin/wechatpay-spring-boot-project</url>
+
+	<developers>
+		<developer>
+			<name>Jerry Chin</name>
+			<email>metrxqin@gmail.com</email>
+		</developer>
+	</developers>
+
 	<scm>
 		<url>https://github.com/JerryChin/wechatpay-spring-boot-project</url>
 		<connection>scm:git:https://github.com/JerryChin/wechatpay-spring-boot-project.git</connection>
@@ -20,6 +33,13 @@
 		<module>wechatpay-spring-boot-starter</module>
 		<module>wechatpay-spring-boot-parent</module>
 	</modules>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>http://www.apache.org/licenses/</url>
+		</license>
+	</licenses>
 
 	<profiles>
 		<profile>
