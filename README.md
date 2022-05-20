@@ -4,58 +4,37 @@
 
 ## 版本状态
 
-目前项目仍然处于**开发**状态，手头暂时没有微信支付相关秘钥因此暂时无法验证代码的正确性，希望有能力的同学可以帮忙验证，先谢为过。
+当前项目已发布 `0.0.1` 版本，微信支付 SDK 版本支持 `0.4.4` 及以上版本。
+
+由于手头暂时没有微信支付相关秘钥因此暂时无法验证代码的正确性，希望有能力的同学可以帮忙验证，先谢为过。
 
 ## 引入项目
 
-正式版本发布时会采用 Maven Repository，目前需要先手动安装依赖。
-
-### 安装依赖
-
-下载本项目代码，并手动执行 Maven install 到本地 Maven 仓库：
-
-> Maven install = `mvn install`
+本项目已发布至中央仓库，可以直接引入。
 
 ### 引用依赖
-引入 `wechatpay-spring-boot-starter`， 增加以下依赖到工程的 `pom.xml` 文件中：
+引入 `wechatpay-spring-boot-starter` 和 `wechatpay-apache-httpclient`， 增加以下依赖到工程的 `pom.xml` 文件中：
 
 ```xml
 <properties>
-    <spring-boot.version>2.6.7</spring-boot.version>
-    <wechatpay.version>0.4.4</wechatpay.version>
+   <wechatpay.version>0.4.4</wechatpay.version>
+   <wechatpay.starter.version>0.0.1</wechatpay.starter.version>
 </properties>
-    
-<dependencyManagement>
-    <dependencies>
-        <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring-boot.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
-        <!-- WechatPay SDK -->
-        <dependency>
-            <groupId>com.github.wechatpay-apiv3</groupId>
-            <artifactId>wechatpay-apache-httpclient</artifactId>
-            <version>${wechatpay.version}</version>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
 
 <dependencies>
-    <!-- WechatPay Spring Boot Starter -->
-    <dependency>
-        <groupId>io.github.jerrychin</groupId>
-        <artifactId>wechatpay-spring-boot-starter</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </dependency>
 
+    <!-- WechatPay SDK -->
     <dependency>
         <groupId>com.github.wechatpay-apiv3</groupId>
         <artifactId>wechatpay-apache-httpclient</artifactId>
+        <version>${wechatpay.version}</version>
+    </dependency>
+
+    <!-- WechatPay Spring Boot Starter -->
+    <dependency>
+       <groupId>io.github.jerrychin</groupId>
+       <artifactId>wechatpay-spring-boot-starter</artifactId>
+       <version>${wechatpay.starter.version}</version>
     </dependency>
 </dependencies>
 ```
